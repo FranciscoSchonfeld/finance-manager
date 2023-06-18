@@ -1,0 +1,137 @@
+{% load static %}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Finance app</title>
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+<form action="" method="post" class="form-group">
+
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="{{ form.category.id_for_label }}">Category:</label>
+        <div class="box">{{ form.category }}</div>
+    </div>
+    <div class="form-group">
+        <label for="{{ form.price.id_for_label }}">Price:</label>
+        <div class="box">{{ form.price }}</div>
+    </div>
+        <div class="form-group">
+        <label for="{{ form.month.id_for_label }}">Month:</label>
+        <div class="box">{{ form.month }}</div>
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </div>
+
+
+    <div class="float-right">
+        <span>Hello, {{request.user}}</span> <br>
+        <span><a  class="hello-msg" href="{% url 'logout' %}" style="color: black;">Logout</a></span>
+    </div>
+
+
+</form>
+
+
+<br>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body">
+            <h1>Expenses</h1>                   
+        </div>  
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Month</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                </tr>
+                {% for i in items %}
+                    <tr>
+                        <td>{{i.month}}</td>
+                        <td>{{i.category}}</td>
+                        <td>{{i.price}}</td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete' i.pk %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </table>                                    
+        </div>
+    </div>
+</div>
+
+
+<br>
+
+<div class="total_expenses"><h3>Total Expenses:</h3>
+    {% for category, total in sums.items %}
+        <p>{{ category }}: {{ total }}</p>
+    {% endfor %}
+</div>
+
+
+
+<div class="piechart">
+<canvas id="myChart"></canvas>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        var data = {
+            labels: ["Saving", "Food", "Bills", "Rent", "Extra"],
+            datasets: [{
+                data: [
+                    {{ sums_saving }},
+                    {{ sums_food }},
+                    {{ sums_bills }},
+                    {{ sums_rent }},
+                    {{ sums_extra }}
+                ],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56",
+                    "#8AC15F",
+                    "#C6893D"
+                ]
+            }]
+        };
+
+
+        var options = {
+            responsive: true,
+            maintainAspectRatio: false
+        };
+
+        var ctx = document.getElementById("myChart").getContext("2d");
+
+        new Chart(ctx, {
+            type: "pie",
+            data: data,
+            options: options
+        });
+    });
+</script>
+
+</div>
+
+</body>
+</html>
+

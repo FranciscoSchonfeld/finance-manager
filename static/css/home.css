@@ -1,0 +1,163 @@
+body{
+  background: whitesmoke;
+  margin: 0; 
+  padding: 0;
+}
+
+
+
+
+
+
+.form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-group label {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.form-group select,
+.form-group input[type="number"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.btn-primary {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.box {
+  padding-right: 15px;
+}
+
+.float-right {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+
+.table th:not(:first-child),
+.table td:not(:first-child) {
+    margin-left: 20px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.col-md-6 {
+    width: 50%;
+    padding: 0 15px; 
+}
+
+
+
+.total_expenses {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.total_expenses p {
+    margin: 5px 0;
+}
+
+
+
+
+#myChartContainer {
+        width: 450px;
+        height: 450px;
+    }
+
+
+
+.piechart {
+    position: fixed;
+    top: 90;
+    bottom: 0;
+    right: 100;
+    width: 500px;
+    z-index: 200;
+}
+
+
+@media (max-width: 767px) {
+    .container {
+        padding: 15px;
+    }
+    .col-md-6 {
+        width: 100%;
+        padding: 0;
+    }
+
+    .float-right {
+    position: static;
+    margin-top: 10px;
+    margin-right: 10px;
+    text-align: right;
+  }
+
+    .piechart {
+        position: static;
+        margin-top: 20px;
+    }
+}
+
